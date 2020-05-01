@@ -1,33 +1,20 @@
 package com.arthur.estruturadados.vetor;
 
-import java.util.Arrays;
+public class VetorObjetos {
 
-public class Vetor {
-
-
-	private String[] elementos;
+	
+	//TROCA PARA OBJECT ONDE TEM STRING PASSOU A SER OBJECT
+	
+	private Object[] elementos;
 	private int tamanho;
 
-	public Vetor(int capacidade) {
-		this.elementos = new String[capacidade];
+	
+	public VetorObjetos(int capacidade) {
+		this.elementos = new Object[capacidade];
 		this.tamanho = 0;
 	}
 
-//	//Como adicionar um elemento no final de um vetor
-//	public void adiciona(String elemento) {
-//		
-//		for (int i=0; i<this.elementos.length; i++) { //<<< Percorre o vetor e sempre que inicia passa uma casa no vetor
-//			//Se a posição no vetor for null ele adiciona o elemento
-//			if (this.elementos[i] == null) {    //<<<< Se for null ele passa para a outra linha e adiciona
-//				this.elementos[i] = elemento;   //<<<< Adicionando elemento
-//				break;
-//			}
-//		}
-//	}
-
-	// Maneira Eficaz para adicionar mais um elemento na ultima posição tratando
-	// erro
-	public boolean adiciona(String elementos) {
+	public boolean adiciona(Object elementos) {
 		this.aumentaCapacidade();
 		if (this.tamanho < this.elementos.length) {
 			this.elementos[this.tamanho] = elementos;
@@ -37,10 +24,8 @@ public class Vetor {
 		return false;
 	}
 
-	// Metodo para adicionar um valor numa posição especifica
-
-	// Sobrecarregar um metodo para modificar sua assinatura
-	public boolean adiciona(int posicao, String elementos) {
+	
+	public boolean adiciona(int posicao, Object elementos) {
 		// Método para verificar se essa posição é valida
 		if (!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição Inválida");
@@ -63,7 +48,7 @@ public class Vetor {
 
 	private void aumentaCapacidade() {
 		if (this.tamanho == this.elementos.length) {
-			String[] elementosNovos = new String[this.elementos.length * 2];
+			Object[] elementosNovos = new String[this.elementos.length * 2];
 			for (int i = 0; i < this.elementos.length; i++) {
 				elementosNovos[i] = this.elementos[i];
 			}
@@ -74,18 +59,17 @@ public class Vetor {
 
 	// Método de busca elemento com uma exception caso o vetor não tenha a posição
 
-	public String busca(int posicao) {
+	public Object busca(int posicao) {
 		if (!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição Inválida");
 		}
 		return this.elementos[posicao];
 	}
 
-	// Método para verificar se o Elemento Existe
-	// >> Busca Sequencial, buscando de posição em posição para ver se esse é o
-	// elemento.
+	
+	// >> Busca Sequencial, buscando de posição em posição para ver se esse é o elemento.
 
-	public int busca(String elemento) {
+	public int busca(Object elemento) {
 		for (int i = 0; i < this.tamanho; i++) {
 			if (this.elementos[i].equals(elemento)) {
 				return i;
@@ -94,19 +78,14 @@ public class Vetor {
 		// Posição que não existe
 		return -1;
 	}
-	// B G D E F > posição a ser removida é 1 (G)
-	// 0 1 2 3 4 > tamanho é 5
-	// vetor [1] = vetor[2]
-	// vetor [2] = vetor[3]
-	// veotr [3] = vetor[4]
-	// Método remove elemento
+
 	public void remove(int posicao) {
 		if (!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição Inválida");
 		}
-		
-		for (int i = posicao; i <this.tamanho-1; i++) {
-			this.elementos[i] = this.elementos[i+1];
+
+		for (int i = posicao; i < this.tamanho - 1; i++) {
+			this.elementos[i] = this.elementos[i + 1];
 		}
 		this.tamanho--;
 	}
@@ -118,9 +97,7 @@ public class Vetor {
 
 	@Override
 	public String toString() {
-
 		// Método para exibir apenas os elementos preenchidos no vetor
-
 		StringBuilder s = new StringBuilder();
 		s.append("[ ");
 
