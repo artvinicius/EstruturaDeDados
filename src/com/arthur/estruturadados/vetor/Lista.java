@@ -84,6 +84,19 @@ public class Lista<T> {
 		// Posição que não existe
 		return -1;
 	}
+	
+	public boolean contem(T elemento) {
+		//Maneira mais composta
+		/*int pos = busca(elemento);
+		if (pos > -1) {
+			return true;
+		}
+		return false;*/
+		
+		//Maneira simplificada
+		return busca(elemento)> -1;
+	}
+	
 
 	public void remove(int posicao) {
 		if (!(posicao >= 0 && posicao < tamanho)) {
