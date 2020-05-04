@@ -117,6 +117,13 @@ public class Lista<T> {
 		}
 		this.tamanho--;
 	}
+	//Sobrecarga do método remove modificando a assinatura do método o tipo do parâmetro
+	public void remove(T elemento) {
+		int pos = this.busca(elemento);
+		if(pos > -1) {
+			this.remove(pos);
+		}
+	}
 
 	// Método para exibir o tamanho do array
 	public int tamanho() {
