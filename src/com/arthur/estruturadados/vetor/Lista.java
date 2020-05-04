@@ -84,19 +84,28 @@ public class Lista<T> {
 		// Posição que não existe
 		return -1;
 	}
-	
-	public boolean contem(T elemento) {
-		//Maneira mais composta
-		/*int pos = busca(elemento);
-		if (pos > -1) {
-			return true;
+
+	public int ultimoIndice(T elemento) {
+
+		// Para não ficar tão custoso a memoria, vai começar do ultimo até o elemento desejado
+		for (int i = this.tamanho - 1; i >= 0; i--) {
+			if (this.elementos[i].equals(elemento)) {
+				return i;
+			}
 		}
-		return false;*/
-		
-		//Maneira simplificada
-		return busca(elemento)> -1;
+
+		return -1;
 	}
-	
+
+	public boolean contem(T elemento) {
+		// Maneira mais composta
+		/*
+		 * int pos = busca(elemento); if (pos > -1) { return true; } return false;
+		 */
+
+		// Maneira simplificada
+		return busca(elemento) > -1;
+	}
 
 	public void remove(int posicao) {
 		if (!(posicao >= 0 && posicao < tamanho)) {
