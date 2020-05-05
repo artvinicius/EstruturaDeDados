@@ -63,9 +63,13 @@ public class Lista<T> {
 		}
 	}
 
+	public T obtem(int posicao) {
+		return this.busca(posicao);
+	}
+	
 	// Método de busca elemento com uma exception caso o vetor não tenha a posição
 
-	public Object busca(int posicao) {
+	public T busca(int posicao) {
 		if (!(posicao >= 0 && posicao < tamanho)) {
 			throw new IllegalArgumentException("Posição Inválida");
 		}
