@@ -66,7 +66,7 @@ public class Lista<T> {
 	public T obtem(int posicao) {
 		return this.busca(posicao);
 	}
-	
+
 	// Método de busca elemento com uma exception caso o vetor não tenha a posição
 
 	public T busca(int posicao) {
@@ -91,7 +91,8 @@ public class Lista<T> {
 
 	public int ultimoIndice(T elemento) {
 
-		// Para não ficar tão custoso a memoria, vai começar do ultimo até o elemento desejado
+		// Para não ficar tão custoso a memoria, vai começar do ultimo até o elemento
+		// desejado
 		for (int i = this.tamanho - 1; i >= 0; i--) {
 			if (this.elementos[i].equals(elemento)) {
 				return i;
@@ -121,10 +122,28 @@ public class Lista<T> {
 		}
 		this.tamanho--;
 	}
-	//Sobrecarga do método remove modificando a assinatura do método o tipo do parâmetro
+
+	public void limpar() {
+	/*	// opção 1 
+		this.elementos = (T[]) new Object[this.elementos.length];
+
+		// opção 2
+		this.tamanho = 0;
+    */
+		
+		
+		// opção 3 Melhor opção a seguir dependendo do tamanho é uma boa opção
+		for (int i = 0; i < this.tamanho; i++) {
+			this.elementos[i] = null;
+		}
+		this.tamanho = 0;
+	}
+
+	// Sobrecarga do método remove modificando a assinatura do método o tipo do
+	// parâmetro
 	public void remove(T elemento) {
 		int pos = this.busca(elemento);
-		if(pos > -1) {
+		if (pos > -1) {
 			this.remove(pos);
 		}
 	}
@@ -138,7 +157,7 @@ public class Lista<T> {
 	public String toString() {
 		// Método para exibir apenas os elementos preenchidos no vetor
 		StringBuilder s = new StringBuilder();
-		s.append("[ ");
+		s.append("[");
 
 		for (int i = 0; i < this.tamanho - 1; i++) {
 			s.append(this.elementos[i]);
